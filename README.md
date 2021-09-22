@@ -59,3 +59,29 @@ $estado = explode(' ', $con->stat());
 print_r($estado); } 
 // Cerrar conexión 
 $con->close();
+
+Instalacion lets encrypt
+
+sudo apt install certbot python3-certbot-nginx -y
+
+
+#editar /etc/nignx/conf.d/nombredesitio
+
+server { 
+listen 80 default_server; 
+listen [::]:80 default_server;
+root /var/www/nombredesitio; 
+server_name nombredesitio.com www.nombredesitio.com; 
+}
+
+sudo rm /etc/nginx/sites-enabled/default
+
+sudo mkdir /var/www/nombredesitio
+sudo nginx -t && sudo nginx -s reload
+
+Integracion de nginx con certbot
+
+sudo certbot --nginx -d cloudme.fun -d nombredesitio
+
+systemctl status certbot.timer
+
