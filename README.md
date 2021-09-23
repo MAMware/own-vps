@@ -60,7 +60,7 @@ print_r($estado); }
 // Cerrar conexión 
 $con->close();
 
-Instalacion lets encrypt
+Paso 5, Instalacion lets encrypt
 
 sudo apt install certbot python3-certbot-nginx -y
 
