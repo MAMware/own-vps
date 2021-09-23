@@ -83,6 +83,6 @@ sudo nginx -t && sudo nginx -s reload
 
 Integracion de nginx con certbot
 
-sudo certbot --nginx -d cloudme.fun -d nombredesitio
+sudo certbot --nginx -d nombredesitio
 
 systemctl status certbot.timer
