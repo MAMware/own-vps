@@ -28,8 +28,8 @@ sudo apt update &&% sudo apt upgrade
 
 sudo apt install nginx mysql-server php-fpm php-mysql
 
-#debian no tiene los repos para mysql 
-#ubicar ultima version de mysql en https://dev.mysql.com/downloads/repo/apt/
+debian no tiene los repos para mysql 
+ubicar ultima version de mysql en https://dev.mysql.com/downloads/repo/apt/
 
 seudo wget ultimaversion
 sudo dpkg -i ultimaversion
@@ -44,11 +44,12 @@ sudo mysql -u root -p
 
 Crear archivo de estado de mysql
 
-cd /var/www/html 
+``cd /var/www/html 
 sudo touch status-mysql.php 
-sudo nano status-mysql.php
+sudo nano status-mysql.php``
 
-<?php 
+
+``<?php 
 $servidor = "localhost"; 
 $usuario = "usuario"; 
 $pass = "Abc1234"; 
@@ -58,22 +59,23 @@ $pass = "Abc1234";
 $estado = explode(' ', $con->stat()); 
 print_r($estado); } 
 // Cerrar conexión 
-$con->close();
+$con->close();``
 
 Paso 5, Instalacion lets encrypt
 
 sudo apt install certbot python3-certbot-nginx -y
 
 
-#editar /etc/nignx/conf.d/nombredesitio
+editar /etc/nignx/conf.d/nombredesitio
 
+``
 server { 
 listen 80 default_server; 
 listen [::]:80 default_server;
 root /var/www/nombredesitio; 
 server_name nombredesitio.com www.nombredesitio.com; 
 }
-
+``
 sudo rm /etc/nginx/sites-enabled/default
 
 sudo mkdir /var/www/nombredesitio
@@ -84,4 +86,3 @@ Integracion de nginx con certbot
 sudo certbot --nginx -d cloudme.fun -d nombredesitio
 
 systemctl status certbot.timer
-
